@@ -10,12 +10,12 @@ const Hero = () => {
 
     const logos = [
 
-  "https://cdn.simpleicons.org/amazon",
-  "https://cdn.simpleicons.org/microsoft",
-  "https://cdn.simpleicons.org/spotify",
-  "https://cdn.simpleicons.org/slack",
-  "https://cdn.simpleicons.org/airbnb"
-];
+        "https://cdn.simpleicons.org/amazon",
+        "https://cdn.simpleicons.org/microsoft",
+        "https://cdn.simpleicons.org/spotify",
+        "https://cdn.simpleicons.org/slack",
+        "https://cdn.simpleicons.org/airbnb"
+    ];
 
     return (
         <>
@@ -107,7 +107,21 @@ const Hero = () => {
                             <span>Try demo</span>
                         </button>
                     </div>
+                    <style>{`
+.marquee-inner {
+  width: max-content;
+  animation: marqueeScroll 20s linear infinite;
+}
 
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+`}</style>
                     <p className="py-6 text-slate-600 mt-14">
                         Trusted by leading brands, including
                     </p>
@@ -139,23 +153,5 @@ const Hero = () => {
     )
 }
 
-<style>
-{`
-.marquee-inner {
-  width: max-content;
-  animation: marqueeScroll 20s linear infinite;
-}
-
-@keyframes marqueeScroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-`}
-</style>
 
 export default Hero
