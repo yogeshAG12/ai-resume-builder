@@ -9,13 +9,12 @@ const Hero = () => {
     const [menuOpen, setMenuOpen] = React.useState(false);
 
     const logos = [
-
-        "https://cdn.simpleicons.org/amazon",
-        "https://cdn.simpleicons.org/microsoft",
-        "https://cdn.simpleicons.org/spotify",
-        "https://cdn.simpleicons.org/slack",
-        "https://cdn.simpleicons.org/airbnb"
-    ];
+  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoft.svg",
+  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazon.svg",
+  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/spotify.svg",
+  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/slack.svg",
+  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/airbnb.svg",
+];
 
     return (
         <>
@@ -107,21 +106,7 @@ const Hero = () => {
                             <span>Try demo</span>
                         </button>
                     </div>
-                    <style>{`
-.marquee-inner {
-  width: max-content;
-  animation: marqueeScroll 20s linear infinite;
-}
-
-@keyframes marqueeScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-`}</style>
+                                
                     <p className="py-6 text-slate-600 mt-14">
                         Trusted by leading brands, including
                     </p>
