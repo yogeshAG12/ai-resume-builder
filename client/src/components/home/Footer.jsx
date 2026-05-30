@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <>
 
-<footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-40">
-        <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
+<footer className="flex flex-col lg:flex-row justify-between overflow-hidden gap-10 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-20 lg:mt-40">
+        <div className="grid grid-cols-2 lg:flex items-start gap-8 md:gap-[60px] xl:gap-[140px] w-full lg:w-auto">
             <a href="#">
                 <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
             </a>

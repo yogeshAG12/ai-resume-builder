@@ -131,7 +131,7 @@ const saveResume = async () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
           {/* Left Panel - Form */}
-          <div className='relative lg:col-span-5 rounded-lg overflow-hidden order-2 lg:order-1'>
+          <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
             <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
               {/* progress bar using activeSectionIndex */}
               <hr className="absolute top-0 left-0 right-0 border-2 border-gray-200"/>
@@ -186,9 +186,9 @@ const saveResume = async () => {
           </div>
 
           {/* Right Panel - Preview */}
-          <div className='lg:col-span-7 order-1 lg:order-2 mb-6 lg:mb-0'>
+          <div className='lg:col-span-7 max-lg:mt-6'>
               <div className='relative w-full'>
-                <div className='absolute bottom-3 left-0 right-0 flex flex-wrap items-center justify-center sm:justify-end gap-2 px-2'>
+                <div className='absolute bottom-3 right-3 flex flex-wrap gap-2'>
                     {resumeData.public && (
                       <button onClick={handleShare} className='flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
                         <Share2Icon className='size-4'/> Share

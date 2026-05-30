@@ -4,31 +4,31 @@ import ModernTemplate from './templates/ModernTemplate'
 import MinimalTemplate from './templates/MinimalTemplate'
 import MinimalImageTemplate from './templates/MinimalImageTemplate'
 
-const ResumePreview = ({data, template, accentColor, classes = ""}) => {
+const ResumePreview = ({ data, template, accentColor, classes = "" }) => {
 
-    const renderTemplate = ()=>{
-        switch (template) {
-            case "modern":
-                return <ModernTemplate data={data} accentColor={accentColor}/>;
-            case "minimal":
-                return <MinimalTemplate data={data} accentColor={accentColor}/>;
-            case "minimal-image":
-                return <MinimalImageTemplate data={data} accentColor={accentColor}/>;
+  const renderTemplate = () => {
+    switch (template) {
+      case "modern":
+        return <ModernTemplate data={data} accentColor={accentColor} />;
+      case "minimal":
+        return <MinimalTemplate data={data} accentColor={accentColor} />;
+      case "minimal-image":
+        return <MinimalImageTemplate data={data} accentColor={accentColor} />;
 
-            default:
-                return <ClassicTemplate data={data} accentColor={accentColor}/>;
-        }
+      default:
+        return <ClassicTemplate data={data} accentColor={accentColor} />;
     }
+  }
 
   return (
-    <div className='w-full bg-gray-100 overflow-x-auto'>
+    <div className='w-full bg-gray-100 overflow-hidden'>
       <div
-  id="resume-preview"
-  className={
-    "border border-gray-200 print:shadow-none print:border-none w-full max-w-full overflow-hidden " +
-    classes
-  }
->
+        id="resume-preview"
+        className={
+          "border border-gray-200 print:shadow-none print:border-none w-full max-w-full overflow-hidden " +
+          classes
+        }
+      >
         {renderTemplate()}
       </div>
 
