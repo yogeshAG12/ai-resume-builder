@@ -123,29 +123,29 @@ const saveResume = async () => {
     <div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <Link to={'/app'} className='inline-flex gap-2 items-center text-slate-500 hover:text-slate-700 transition-all'>
+        <Link to={'/app'} className='inline-flex gap-2 items-center text-slate-500 hover:text-slate-700 transition-all text-sm sm:text-base'>
           <ArrowLeftIcon className="size-4"/> Back to Dashboard
         </Link>
       </div>
 
-      <div className='max-w-7xl mx-auto px-4 pb-8'>
-        <div className='grid lg:grid-cols-12 gap-8'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
           {/* Left Panel - Form */}
-          <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
+          <div className='relative lg:col-span-5 rounded-lg overflow-hidden order-2 lg:order-1'>
             <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
               {/* progress bar using activeSectionIndex */}
               <hr className="absolute top-0 left-0 right-0 border-2 border-gray-200"/>
               <hr className="absolute top-0 left-0  h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-2000" style={{width: `${activeSectionIndex * 100 / (sections.length - 1)}%`}}/>
 
               {/* Section Navigation */}
-              <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 border-b border-gray-300 py-3">
 
                 <div className='flex items-center gap-2'>
                   <TemplateSelector selectedTemplate={resumeData.template} onChange={(template)=> setResumeData(prev => ({...prev, template}))}/>
                   <ColorPicker selectedColor={resumeData.accent_color} onChange={(color)=>setResumeData(prev => ({...prev, accent_color: color}))}/>
                 </div>
 
-                <div className='flex items-center'>
+                <div className='flex items-center justify-center w-full sm:w-auto'>
                   {activeSectionIndex !== 0 && (
                     <button onClick={()=> setActiveSectionIndex((prevIndex)=> Math.max(prevIndex - 1, 0))} className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all' disabled={activeSectionIndex === 0}>
                       <ChevronLeft className="size-4"/> Previous
@@ -179,16 +179,16 @@ const saveResume = async () => {
                   )}
                   
               </div>
-              <button onClick={()=> {toast.promise(saveResume, {loading: 'Saving...'})}} className='bg-gradient-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
+              <button onClick={()=> {toast.promise(saveResume, {loading: 'Saving...'})}} className='w-full sm:w-auto bg-gradient-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-3 mt-6 text-sm'>
                 Save Changes
               </button>
             </div>
           </div>
 
           {/* Right Panel - Preview */}
-          <div className='lg:col-span-7 max-lg:mt-6'>
+          <div className='lg:col-span-7 order-1 lg:order-2 mb-6 lg:mb-0'>
               <div className='relative w-full'>
-                <div className='absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2'>
+                <div className='absolute bottom-3 left-0 right-0 flex flex-wrap items-center justify-center sm:justify-end gap-2 px-2'>
                     {resumeData.public && (
                       <button onClick={handleShare} className='flex items-center p-2 px-4 gap-2 text-xs bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
                         <Share2Icon className='size-4'/> Share
