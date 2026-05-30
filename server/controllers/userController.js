@@ -1,3 +1,5 @@
+import crypto from "crypto";
+import nodemailer from "nodemailer";
 import User from "../models/User.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -117,4 +119,58 @@ export const getUserResumes = async (req, res) => {
         return res.status(400).json({message: error.message})
     }
 }
+
+// forgot password function
+export const forgotPassword = async (req, res) => {
+    try {
+
+        const { email } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        const resetToken = crypto.randomBytes(32).toString("hex");
+
+        user.resetToken = resetToken;
+        user.resetTokenExpire = Date.now() + 15 * 60 * 1000;
+
+        await user.save();
+
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "Password Reset Request",
+            html: `
+                <h2>AI Resume Builder</h2>
+                <p>Your password reset token is:</p>
+                <h3>${resetToken}</h3>
+                <p>This token will expire in 15 minutes.</p>
+            `,
+        });
+
+        return res.status(200).json({
+            message: "Password reset token sent to your email"
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+};
 
