@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import api from '../configs/api'
 import toast from 'react-hot-toast'
-import * as pdfjsLib from "pdfjs-dist";
+import pdfToText from 'react-pdftotext'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
@@ -69,39 +69,19 @@ const Dashboard = () => {
 
 const uploadResume = async (event) => {
   event.preventDefault();
-  setIsLoading(true);
-
+  setIsLoading(true)
   try {
-    const resumeText = await extractTextFromPDF(resume);
-
-    console.log("TEXT LENGTH:", resumeText.length);
-
-    const { data } = await api.post(
-      "/api/ai/upload-resume",
-      {
-        title,
-        resumeText,
-      },
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-
-    setTitle("");
-    setResume(null);
-    setShowUploadResume(false);
-
-    navigate(`/app/builder/${data.resumeId}`);
+    const resumeText = await pdfToText(resume)
+    const { data } = await api.post('/api/ai/upload-resume', {title, resumeText}, {headers: { Authorization: token }})
+    setTitle('')
+    setResume(null)
+    setShowUploadResume(false)
+    navigate(`app/builder/${data.resumeId}`)
   } catch (error) {
-    toast.error(
-      error?.response?.data?.message || error.message
-    );
+    toast.error(error?.response?.data?.message || error.message)
   }
-
-  setIsLoading(false);
-};
+  setIsLoading(false)
+}
   const editTitle = async (event) => {
     try {
       event.preventDefault()
