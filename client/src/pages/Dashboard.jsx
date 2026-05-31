@@ -7,28 +7,6 @@ import api from '../configs/api'
 import toast from 'react-hot-toast'
 import pdfToText from 'react-pdftotext'
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
-const extractTextFromPDF = async (file) => {
-  const arrayBuffer = await file.arrayBuffer();
-
-  const pdf = await pdfjsLib.getDocument({
-    data: arrayBuffer,
-  }).promise;
-
-  let text = "";
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-
-    text += content.items.map((item) => item.str).join(" ");
-    text += "\n";
-  }
-
-  return text;
-};
-
 const Dashboard = () => {
 
   const {user, token} = useSelector(state => state.auth)
@@ -125,10 +103,12 @@ const uploadResume = async (event) => {
               <PlusIcon className='size-11 transition-all duration-300 p-2.5 bg-gradient-to-br from-indigo-300 to-indigo-500  text-white rounded-full'/>
               <p className='text-sm group-hover:text-indigo-600 transition-all duration-300'>Create Resume</p>
             </button>
-            <button onClick={()=> setShowUploadResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-purple-500 hover:shadow-lg transition-all duration-300 cursor-pointer'>
+           {/* 
+           <button onClick={()=> setShowUploadResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-purple-500 hover:shadow-lg transition-all duration-300 cursor-pointer'>
               <UploadCloudIcon className='size-11 transition-all duration-300 p-2.5 bg-gradient-to-br from-purple-300 to-purple-500  text-white rounded-full'/>
               <p className='text-sm group-hover:text-purple-600 transition-all duration-300'>Upload Existing</p>
-            </button>
+            </button> 
+            */}
         </div>
 
       <hr className='border-slate-300 my-6 sm:w-[305px]' />
