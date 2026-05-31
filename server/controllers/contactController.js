@@ -35,8 +35,11 @@ export const sendContactMail = async (req, res) => {
       message: "Message sent successfully",
     });
   } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
+  console.log("CONTACT ERROR:", error);
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+
+  return res.status(500).json({
+    message: error.message,
+  });
+}
 };
