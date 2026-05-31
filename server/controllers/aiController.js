@@ -1,6 +1,6 @@
 import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
-import pdfParse from "pdf-parse";
+import * as pdfParse from "pdf-parse";
 
 // controller for enhancing a resume's professional summary
 // POST: /api/ai/enhance-pro-sum
@@ -69,7 +69,7 @@ export const uploadResume = async (req, res) => {
     const title = req.body.title;
     const userId = req.userId;
 
-    const pdfData = await pdfParse(req.file.buffer);
+    const pdfData = await pdfParse.default(req.file.buffer);
     const resumeText = pdfData.text;
 
     console.log("TITLE:", title);
