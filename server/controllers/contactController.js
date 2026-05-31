@@ -1,14 +1,13 @@
 import nodemailer from "nodemailer";
 
 export const sendContactMail = async (req, res) => {
-  try {
-    const { name, email, message } = req.body;
+  console.log("CONTACT API HIT");
+  console.log("BODY:", req.body);
 
-    if (!name || !email || !message) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
-    }
+  return res.status(200).json({
+    message: "API Working",
+  });
+};
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
