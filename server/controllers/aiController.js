@@ -63,8 +63,6 @@ export const enhanceJobDescription = async (req, res) => {
 
 // controller for uploading a resume to the database
 // POST: /api/ai/upload-resume
-import pdfParse from "pdf-parse";
-
 export const uploadResume = async (req, res) => {
   try {
 
