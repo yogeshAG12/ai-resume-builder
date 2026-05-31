@@ -9,18 +9,18 @@ const Hero = () => {
     const [menuOpen, setMenuOpen] = React.useState(false);
 
     const logos = [
-  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoft.svg",
-  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazon.svg",
-  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/spotify.svg",
-  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/slack.svg",
-  "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/airbnb.svg",
-];
+        "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoft.svg",
+        "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazon.svg",
+        "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/spotify.svg",
+        "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/slack.svg",
+        "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/airbnb.svg",
+    ];
 
     return (
         <>
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
-                <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
+                <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="#">
                         <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
                     </a>
@@ -52,51 +52,49 @@ const Hero = () => {
                 </nav>
 
                 {/* Mobile Menu */}
-                {/* Mobile Menu */}
-<div
-  className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${
-    menuOpen ? "translate-x-0" : "-translate-x-full"
-  }`}
->
-  <a
-    href="#"
-    className="text-white"
-    onClick={() => setMenuOpen(false)}
-  >
-    Home
-  </a>
+                <div
+                    className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"
+                        }`}
+                >
+                    <a
+                        href="#"
+                        className="text-white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Home
+                    </a>
 
-  <a
-    href="#features"
-    className="text-white"
-    onClick={() => setMenuOpen(false)}
-  >
-    Features
-  </a>
+                    <a
+                        href="#features"
+                        className="text-white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Features
+                    </a>
 
-  <a
-    href="#testimonials"
-    className="text-white"
-    onClick={() => setMenuOpen(false)}
-  >
-    Testimonials
-  </a>
+                    <a
+                        href="#testimonials"
+                        className="text-white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Testimonials
+                    </a>
 
-  <a
-    href="#contact"
-    className="text-white"
-    onClick={() => setMenuOpen(false)}
-  >
-    Contact
-  </a>
+                    <a
+                        href="#contact"
+                        className="text-white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Contact
+                    </a>
 
-  <button
-    onClick={() => setMenuOpen(false)}
-    className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex"
-  >
-    X
-  </button>
-</div>
+                    <button
+                        onClick={() => setMenuOpen(false)}
+                        className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex"
+                    >
+                        X
+                    </button>
+                </div>
 
                 {/* Hero Section */}
                 <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
@@ -142,7 +140,7 @@ const Hero = () => {
                             <span>Try demo</span>
                         </button>
                     </div>
-                                
+
                     <p className="py-6 text-slate-600 mt-14">
                         Trusted by leading brands, including
                     </p>
