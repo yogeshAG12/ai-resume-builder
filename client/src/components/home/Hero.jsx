@@ -20,7 +20,7 @@ const Hero = () => {
         <>
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
-                <nav className="sticky top-0 z-[999] bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
+                <nav className="fixed top-0 left-0 right-0 z-[999] bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="#">
                         <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
                     </a>
@@ -29,7 +29,7 @@ const Hero = () => {
                         <a href="#" className="hover:text-green-600 transition">Home</a>
                         <a href="#features" className="hover:text-green-600 transition">Features</a>
                         <a href="#testimonials" className="hover:text-green-600 transition">Testimonials</a>
-                        <a href="#cta" className="hover:text-green-600 transition">Contact</a>
+                        <a href="#contact" className="hover:text-green-600 transition">Contact</a>
                     </div>
 
                     <div className="flex gap-2">
@@ -97,7 +97,7 @@ const Hero = () => {
                 </div>
 
                 {/* Hero Section */}
-                <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
+                <div className="relative pt-24 flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
                     <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
 
                     {/* Avatars + Stars */}
