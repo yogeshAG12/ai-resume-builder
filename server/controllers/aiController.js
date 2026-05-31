@@ -1,6 +1,6 @@
 import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
-import pdfParse from "pdf-parse";
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
 
 // controller for enhancing a resume's professional summary
 // POST: /api/ai/enhance-pro-sum
@@ -69,11 +69,31 @@ export const uploadResume = async (req, res) => {
         const title = req.body.title;
         const userId = req.userId;
 
-        console.log("PDFPARSE TYPE:", typeof pdfParse);
-        console.log("PDFPARSE:", pdfParse);
         console.log("FILE EXISTS:", !!req.file);
-        const pdfData = await pdfParse(req.file.buffer);
-        const resumeText = pdfData.text;
+
+        const resumeText = await extractTextFromPDF(
+            req.file.buffer
+        );
+
+        console.log("TEXT LENGTH:", resumeText?.length);
+
+        const extractTextFromPDF = async (buffer) => {
+            const pdf = await pdfjsLib.getDocument({
+                data: new Uint8Array(buffer),
+            }).promise;
+
+            let text = "";
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+
+                text += content.items.map(item => item.str).join(" ");
+                text += "\n";
+            }
+
+            return text;
+        };
 
         console.log("TITLE:", title);
         console.log("PDF TEXT LENGTH:", resumeText?.length);
@@ -154,6 +174,11 @@ export const uploadResume = async (req, res) => {
 
         res.json({ resumeId: newResume._id })
     } catch (error) {
-        return res.status(400).json({ message: error.message })
-    }
+    console.error("UPLOAD ERROR:", error);
+
+    return res.status(400).json({
+        message: error.message,
+        stack: error.stack
+    });
+}
 }
