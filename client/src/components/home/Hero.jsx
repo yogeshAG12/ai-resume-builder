@@ -20,7 +20,7 @@ const Hero = () => {
         <>
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
-                <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
+                <nav className="sticky top-0 z-[999] bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="#">
                         <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
                     </a>
