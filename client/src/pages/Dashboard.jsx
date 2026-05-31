@@ -44,23 +44,35 @@ const Dashboard = () => {
     toast.error(error?.response?.data?.message || error.message)
    }
   }
+const uploadResume = async (event) => {
+  event.preventDefault()
+  setIsLoading(true)
 
-  const uploadResume = async (event) => {
-    event.preventDefault()
-    setIsLoading(true)
-    try {
-      const resumeText = await pdfToText(resume)
-      const { data } = await api.post('/api/ai/upload-resume', {title, resumeText}, {headers: { Authorization: token }})
-      setTitle('')
-      setResume(null)
-      setShowUploadResume(false)
-      navigate(`/app/builder/${data.resumeId}`)
-    } catch (error) {
-      toast.error(error?.response?.data?.message || error.message)
-    }
-    setIsLoading(false)
+  try {
+    const resumeText = await pdfToText(resume)
+
+    console.log("FILE:", resume)
+    console.log("TEXT:", resumeText)
+    console.log("TEXT LENGTH:", resumeText?.length)
+
+    const { data } = await api.post(
+      '/api/ai/upload-resume',
+      { title, resumeText },
+      { headers: { Authorization: token } }
+    )
+
+    setTitle('')
+    setResume(null)
+    setShowUploadResume(false)
+
+    navigate(`/app/builder/${data.resumeId}`)
+
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error.message)
   }
 
+  setIsLoading(false)
+}
   const editTitle = async (event) => {
     try {
       event.preventDefault()
