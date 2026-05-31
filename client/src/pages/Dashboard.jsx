@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import api from '../configs/api'
 import toast from 'react-hot-toast'
-import pdfToText from 'react-pdftotext'
+
 
 const Dashboard = () => {
 
@@ -46,35 +46,38 @@ const Dashboard = () => {
   }
 
 const uploadResume = async (event) => {
-  event.preventDefault()
-  setIsLoading(true)
+  event.preventDefault();
+  setIsLoading(true);
 
   try {
+    const formData = new FormData();
 
-    // TEMPORARY TEST
-    const resumeText = "React Node MongoDB Developer"
-
-    console.log("TEXT:", resumeText)
+    formData.append("title", title);
+    formData.append("resume", resume);
 
     const { data } = await api.post(
-      '/api/ai/upload-resume',
-      { title, resumeText },
-      { headers: { Authorization: token } }
-    )
+      "/api/ai/upload-resume",
+      formData,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
 
-    setTitle('')
-    setResume(null)
-    setShowUploadResume(false)
+    setTitle("");
+    setResume(null);
+    setShowUploadResume(false);
 
-    navigate(`/app/builder/${data.resumeId}`)
-
+    navigate(`/app/builder/${data.resumeId}`);
   } catch (error) {
-    console.log(error.response?.data)
-    toast.error(error?.response?.data?.message || error.message)
+    toast.error(
+      error?.response?.data?.message || error.message
+    );
   }
 
-  setIsLoading(false)
-}
+  setIsLoading(false);
+};
 
   const editTitle = async (event) => {
     try {
