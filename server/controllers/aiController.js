@@ -61,14 +61,36 @@ export const enhanceJobDescription = async (req, res) => {
     }
 }
 
-// controller for uploading a resume to the database
-// POST: /api/ai/upload-resume
+
+
+        console.log("FILE:", req.file?.originalname);
+ const extractTextFromPDF = async (buffer) => {
+    const pdf = await pdfjsLib.getDocument({
+        data: new Uint8Array(buffer),
+    }).promise;
+
+    let text = "";
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+
+        text += content.items.map(item => item.str).join(" ");
+        text += "\n";
+    }
+
+    return text;
+};
+
 export const uploadResume = async (req, res) => {
     try {
 
         const title = req.body.title;
         const userId = req.userId;
 
+        console.log("TITLE:", title);
+        console.log("USER:", userId);
+        console.log("BUFFER:", req.file?.buffer?.length);
         console.log("FILE EXISTS:", !!req.file);
 
         const resumeText = await extractTextFromPDF(
@@ -76,25 +98,6 @@ export const uploadResume = async (req, res) => {
         );
 
         console.log("TEXT LENGTH:", resumeText?.length);
-
-        const extractTextFromPDF = async (buffer) => {
-            const pdf = await pdfjsLib.getDocument({
-                data: new Uint8Array(buffer),
-            }).promise;
-
-            let text = "";
-
-            for (let i = 1; i <= pdf.numPages; i++) {
-                const page = await pdf.getPage(i);
-                const content = await page.getTextContent();
-
-                text += content.items.map(item => item.str).join(" ");
-                text += "\n";
-            }
-
-            return text;
-        };
-
         console.log("TITLE:", title);
         console.log("PDF TEXT LENGTH:", resumeText?.length);
         console.log("USER ID:", userId);
@@ -174,11 +177,11 @@ export const uploadResume = async (req, res) => {
 
         res.json({ resumeId: newResume._id })
     } catch (error) {
-    console.error("UPLOAD ERROR:", error);
+        console.error("UPLOAD ERROR:", error);
 
-    return res.status(400).json({
-        message: error.message,
-        stack: error.stack
-    });
-}
+        return res.status(400).json({
+            message: error.message,
+            stack: error.stack
+        });
+    }
 }
