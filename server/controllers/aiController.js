@@ -61,9 +61,6 @@ export const enhanceJobDescription = async (req, res) => {
     }
 }
 
-
-
-        console.log("FILE:", req.file?.originalname);
  const extractTextFromPDF = async (buffer) => {
     const pdf = await pdfjsLib.getDocument({
         data: new Uint8Array(buffer),
