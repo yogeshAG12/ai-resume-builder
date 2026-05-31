@@ -19,6 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://ai-resume-builder-tau-seven.vercel.app",
       "https://ai-resume-builder-git-main-yogeshag12s-projects.vercel.app",
     ],
     credentials: true,
