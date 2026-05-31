@@ -1,6 +1,5 @@
 import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
-import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
 
 // controller for enhancing a resume's professional summary
 // POST: /api/ai/enhance-pro-sum
@@ -60,48 +59,20 @@ export const enhanceJobDescription = async (req, res) => {
         return res.status(400).json({ message: error.message })
     }
 }
-
- const extractTextFromPDF = async (buffer) => {
-    const pdf = await pdfjsLib.getDocument({
-        data: new Uint8Array(buffer),
-    }).promise;
-
-    let text = "";
-
-    for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-
-        text += content.items.map(item => item.str).join(" ");
-        text += "\n";
-    }
-
-    return text;
-};
-
 export const uploadResume = async (req, res) => {
     try {
 
         const title = req.body.title;
+        const { resumeText } = req.body;
         const userId = req.userId;
 
         console.log("TITLE:", title);
         console.log("USER:", userId);
-        console.log("BUFFER:", req.file?.buffer?.length);
-        console.log("FILE EXISTS:", !!req.file);
-
-        const resumeText = await extractTextFromPDF(
-            req.file.buffer
-        );
-
         console.log("TEXT LENGTH:", resumeText?.length);
-        console.log("TITLE:", title);
-        console.log("PDF TEXT LENGTH:", resumeText?.length);
-        console.log("USER ID:", userId);
 
         if (!resumeText || resumeText.trim().length === 0) {
             return res.status(400).json({
-                message: "Unable to extract text from PDF",
+                message: "Resume text required",
             });
         }
 

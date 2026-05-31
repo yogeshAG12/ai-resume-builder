@@ -50,14 +50,16 @@ const uploadResume = async (event) => {
   setIsLoading(true);
 
   try {
-    const formData = new FormData();
+    const resumeText = await extractTextFromPDF(resume);
 
-    formData.append("title", title);
-    formData.append("resume", resume);
+    console.log("TEXT LENGTH:", resumeText.length);
 
     const { data } = await api.post(
       "/api/ai/upload-resume",
-      formData,
+      {
+        title,
+        resumeText,
+      },
       {
         headers: {
           Authorization: token,
@@ -78,7 +80,6 @@ const uploadResume = async (event) => {
 
   setIsLoading(false);
 };
-
   const editTitle = async (event) => {
     try {
       event.preventDefault()

@@ -25,7 +25,6 @@ aiRouter.post(
 aiRouter.post(
   "/upload-resume",
   protect,
-  upload.single("resume"),
   uploadResume
 );
 
