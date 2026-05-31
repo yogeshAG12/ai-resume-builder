@@ -32,7 +32,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
         <Layout size={14} /> <span className='max-sm:hidden'>Template</span>
       </button>
       {isOpen && (
-        <div className='absolute top-full left-0 sm:left-auto sm:right-0 w-[90vw] max-w-xs p-3 mt-2 space-y-3 z-10 bg-white rounded-md border border-gray-200 shadow-sm'>
+        <div className='fixed inset-4 top-24 max-h-[70vh] overflow-y-auto p-3 space-y-3 z-[999] bg-white rounded-md border border-gray-200 shadow-lg sm:absolute sm:inset-auto sm:top-full sm:left-0 sm:w-72 sm:max-h-none'>
             {templates.map((template)=>(
                 <div key={template.id} onClick={()=> {onChange(template.id); setIsOpen(false)}} className={`relative p-3 border rounded-md cursor-pointer transition-all ${selectedTemplate === template.id ?
                     "border-blue-400 bg-blue-100"

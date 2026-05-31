@@ -4,10 +4,13 @@ const Footer = () => {
   return (
     <>
 
-<footer className="flex flex-col lg:flex-row justify-between overflow-hidden gap-10 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-20 lg:mt-40">
-        <div className="grid grid-cols-2 lg:flex items-start gap-8 md:gap-[60px] xl:gap-[140px] w-full lg:w-auto">
+<footer
+  id="contact"
+  className="flex flex-col lg:flex-row justify-between overflow-hidden gap-10 py-16 px-8 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-10 lg:mt-20"
+>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex items-start gap-8 md:gap-[60px] xl:gap-[140px] w-full lg:w-auto">
             <a href="#">
-                <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
+                <img src="/logo.svg" alt="logo" className="h-8 sm:h-12" />
             </a>
             <div>
                 <p className="text-slate-800 font-semibold">Product</p>
@@ -24,7 +27,7 @@ const Footer = () => {
                     <li><a href="/" className="hover:text-green-600 transition">Company</a></li>
                     <li><a href="/" className="hover:text-green-600 transition">Blogs</a></li>
                     <li><a href="/" className="hover:text-green-600 transition">Community</a></li>
-                    <li><a href="/" className="hover:text-green-600 transition">Careers<span className="text-xs text-white bg-green-600 rounded-md ml-2 px-2 py-1">We’re hiring!</span></a></li>
+                    <li><a href="/" className="hover:text-green-600 transition">Careers<span className="text-xs text-white bg-green-600 rounded-md ml-2 px-2 py-1 whitespace-nowrap">We’re hiring!</span></a></li>
                     <li><a href="/" className="hover:text-green-600 transition">About</a></li>
                 </ul>
             </div>
@@ -38,7 +41,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col max-md:items-center max-md:text-center gap-2 items-end">
             <p className="max-w-60">Making every customer feel valued—no matter the size of your audience.</p>
-            <div className="flex items-center gap-4 mt-3">
+            <div className="flex items-center justify-center gap-4">
                 <a href="https://dribbble.com/" target="_blank" rel="noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dribbble size-5 hover:text-green-500" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"></circle>
@@ -69,7 +72,7 @@ const Footer = () => {
                     </svg>
                 </a>
             </div>
-            <p className="mt-3 text-center">© 2025 Resume Builder</p>
+            <p className="text-center text-sm text-gray-600 mt-4">© 2026 Resume Builder</p>
         </div>
     </footer>
 

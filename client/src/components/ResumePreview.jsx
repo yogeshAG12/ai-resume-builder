@@ -21,19 +21,23 @@ const ResumePreview = ({ data, template, accentColor, classes = "" }) => {
   }
 
   return (
-    <div className='w-full bg-gray-100 overflow-hidden'>
-      <div
-        id="resume-preview"
-        className={
-          "border border-gray-200 print:shadow-none print:border-none w-full max-w-full overflow-hidden " +
-          classes
-        }
-      >
-        {renderTemplate()}
-      </div>
-
-      <style jsx>
+      <div className='w-full bg-gray-100 overflow-x-auto'>
+        <div
+      id="resume-preview"
+      className={
+        "border border-gray-200 print:shadow-none print:border-none min-w-[800px] overflow-hidden " +
+        classes
+      }
+    >
+      {renderTemplate()}
+    </div>
+      <style>
         {`
+        @media screen and (max-width: 640px) {
+  #resume-preview {
+    margin-bottom: -80px;
+  }
+}
         @page {
           size: letter;
           margin: 0;

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import contactRouter from "./routes/contactRoutes.js";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRoutes.js";
 import resumeRouter from "./routes/resumeRoutes.js";
@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRouter);
 app.use("/api/resumes", resumeRouter);
+app.use("/api/contact", contactRouter);
 app.use("/api/ai", aiRouter);
 
 // Start Server
