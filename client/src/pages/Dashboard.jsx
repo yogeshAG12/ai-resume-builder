@@ -44,16 +44,17 @@ const Dashboard = () => {
     toast.error(error?.response?.data?.message || error.message)
    }
   }
+
 const uploadResume = async (event) => {
   event.preventDefault()
   setIsLoading(true)
 
   try {
-    const resumeText = await pdfToText(resume)
 
-    console.log("FILE:", resume)
+    // TEMPORARY TEST
+    const resumeText = "React Node MongoDB Developer"
+
     console.log("TEXT:", resumeText)
-    console.log("TEXT LENGTH:", resumeText?.length)
 
     const { data } = await api.post(
       '/api/ai/upload-resume',
@@ -68,11 +69,13 @@ const uploadResume = async (event) => {
     navigate(`/app/builder/${data.resumeId}`)
 
   } catch (error) {
+    console.log(error.response?.data)
     toast.error(error?.response?.data?.message || error.message)
   }
 
   setIsLoading(false)
 }
+
   const editTitle = async (event) => {
     try {
       event.preventDefault()
