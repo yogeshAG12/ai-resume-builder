@@ -7,6 +7,8 @@ import api from '../configs/api'
 import toast from 'react-hot-toast'
 import * as pdfjsLib from "pdfjs-dist";
 
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 const extractTextFromPDF = async (file) => {
   const arrayBuffer = await file.arrayBuffer();
 
