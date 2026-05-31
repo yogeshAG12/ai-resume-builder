@@ -69,6 +69,9 @@ export const uploadResume = async (req, res) => {
     const title = req.body.title;
     const userId = req.userId;
 
+    console.log("PDFPARSE TYPE:", typeof pdfParse);
+console.log("PDFPARSE:", pdfParse);
+console.log("FILE EXISTS:", !!req.file);
     const pdfData = await pdfParse.default(req.file.buffer);
     const resumeText = pdfData.text;
 
