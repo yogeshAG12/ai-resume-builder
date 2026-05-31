@@ -1,6 +1,6 @@
 import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
-import * as pdfParse from "pdf-parse";
+import pdfParse from "pdf-parse";
 
 // controller for enhancing a resume's professional summary
 // POST: /api/ai/enhance-pro-sum
@@ -64,26 +64,26 @@ export const enhanceJobDescription = async (req, res) => {
 // controller for uploading a resume to the database
 // POST: /api/ai/upload-resume
 export const uploadResume = async (req, res) => {
-  try {
+    try {
 
-    const title = req.body.title;
-    const userId = req.userId;
+        const title = req.body.title;
+        const userId = req.userId;
 
-    console.log("PDFPARSE TYPE:", typeof pdfParse);
-console.log("PDFPARSE:", pdfParse);
-console.log("FILE EXISTS:", !!req.file);
-    const pdfData = await pdfParse.default(req.file.buffer);
-    const resumeText = pdfData.text;
+        console.log("PDFPARSE TYPE:", typeof pdfParse);
+        console.log("PDFPARSE:", pdfParse);
+        console.log("FILE EXISTS:", !!req.file);
+        const pdfData = await pdfParse(req.file.buffer);
+        const resumeText = pdfData.text;
 
-    console.log("TITLE:", title);
-    console.log("PDF TEXT LENGTH:", resumeText?.length);
-    console.log("USER ID:", userId);
+        console.log("TITLE:", title);
+        console.log("PDF TEXT LENGTH:", resumeText?.length);
+        console.log("USER ID:", userId);
 
-    if (!resumeText || resumeText.trim().length === 0) {
-      return res.status(400).json({
-        message: "Unable to extract text from PDF",
-      });
-    }
+        if (!resumeText || resumeText.trim().length === 0) {
+            return res.status(400).json({
+                message: "Unable to extract text from PDF",
+            });
+        }
 
         const systemPrompt = "You are an expert AI Agent to extract data from resume."
 
