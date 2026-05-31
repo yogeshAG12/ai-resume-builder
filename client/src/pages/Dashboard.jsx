@@ -5,7 +5,27 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import api from '../configs/api'
 import toast from 'react-hot-toast'
+import * as pdfjsLib from "pdfjs-dist";
 
+const extractTextFromPDF = async (file) => {
+  const arrayBuffer = await file.arrayBuffer();
+
+  const pdf = await pdfjsLib.getDocument({
+    data: arrayBuffer,
+  }).promise;
+
+  let text = "";
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+
+    text += content.items.map((item) => item.str).join(" ");
+    text += "\n";
+  }
+
+  return text;
+};
 
 const Dashboard = () => {
 
